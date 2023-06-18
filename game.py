@@ -1,3 +1,16 @@
+"""
+A tic tac toe game:
+|1|2|3|
+|4|5|6|
+|7|8|9|
+
+############################
+Design of board:
+0: empty
+1: O
+2: X
+"""
+
 # The original code was from the answer of HW week3.
 # https://jack-chan-s-school.teachable.com/courses/python/lectures/46228457
 
@@ -14,18 +27,11 @@
         # No one won -> return 3
         # unknown -> return 0
 
-# A tic tac toe game:
-# |1|2|3|
-# |4|5|6|
-# |7|8|9|
-
-############################
-# Design of board:
-# 0: empty
-# 1: O
-# 2: X
 
 class Player:
+    """ Player class
+    comment here !@#$%%^^&*(@$#$#$%@^%$@!#$$!$%%^&&*()*_)
+    """
     def __init__(self, turn: int) -> None:
         self.turn = turn
 
