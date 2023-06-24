@@ -8,8 +8,51 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tic_tac_toe</title>
+    <link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
   </head>
   <body>
-    hello
+      <div class = "wrapper">
+        <!-- /* row 1 放說明, row 2 放井字, row 3放按鍵 */ -->
+        <!-- 印出borad 及 turn資訊 -->
+      <div class = "item">{{board}} {{turn}}</div> 
+        <div id = "tic-tac-toe">
+          <!-- 九宮格 -->
+          {% for i in range(9) %}
+          <!-- 變數用兩個大括號表示{{i+1}} -->
+          <!-- <div class="box" id="box-{{i+1}}" onclick="window.location='/?board={{board[:i] + turn + board[i+1:]}}'"> -->
+                                                                            <!--上述這種寫法會有同一個盤面連點出現錯誤, 要使用if else 解決, 為求精簡使用 結果 + if ... + else ... 一行的寫法-->
+          <div class="box" id="box-{{i+1}}" onclick="window.location='/?board={{board[:i] + turn + board[i+1:] if board[i] == '0' else board}}'">
+            {% if board[i] == '1'%}
+              <div class = "circle"></div>
+            {% elif board[i] == '2'%}
+              <div class = "cross1"></div>
+              <div class = "cross2"></div>
+            {% endif %}</div>
+          {% endfor %}
+          
+          <!-- <div class="box" id="box-1"> -->
+            <!-- 在沒有後端之前也要能有圈差 -->
+            <!-- <div class = 'circle'></div> -->
+          <!-- </div> -->
+
+          <!-- <div class="box" id="box-2">
+            <div class = 'cross1'></div>
+            <div class = 'cross2'></div>
+          </div>
+          <div class="box" id="box-3"></div>
+          <div class="box" id="box-4"></div>
+          <div class="box" id="box-5"></div>
+          <div class="box" id="box-6"></div>
+          <div class="box" id="box-7"></div>
+          <div class="box" id="box-8"></div>
+          <div class="box" id="box-9"></div>
+        </div> -->
+        <!-- row 3放按鍵 -->
+      </div>
+      <div class = "botton-wrapper">
+          <div id = "reset" onclick="window.location='/'">
+              RESET
+          </div>
+      </div>
   </body>
 </html>
