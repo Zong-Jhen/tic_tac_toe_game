@@ -14,14 +14,15 @@
       <div class = "wrapper">
         <!-- /* row 1 放說明, row 2 放井字, row 3放按鍵 */ -->
         <!-- 印出borad 及 turn資訊 -->
-      <div class = "item">{{board}} {{turn}}</div> 
+      <!-- <div class = "item">{{end_text}} {{turn}}</div>  -->
+      <div class = "end-text">{{end_text}}</div> 
         <div id = "tic-tac-toe">
           <!-- 九宮格 -->
           {% for i in range(9) %}
           <!-- 變數用兩個大括號表示{{i+1}} -->
           <!-- <div class="box" id="box-{{i+1}}" onclick="window.location='/?board={{board[:i] + turn + board[i+1:]}}'"> -->
                                                                             <!--上述這種寫法會有同一個盤面連點出現錯誤, 要使用if else 解決, 為求精簡使用 結果 + if ... + else ... 一行的寫法-->
-          <div class="box" id="box-{{i+1}}" onclick="window.location='/?board={{board[:i] + turn + board[i+1:] if board[i] == '0' else board}}'">
+          <div class="box" id="box-{{i+1}}" onclick="window.location='/?board={{board[:i] + turn + board[i+1:] if (board[i] == '0' and is_end == 0) else board}}'">
             {% if board[i] == '1'%}
               <div class = "circle"></div>
             {% elif board[i] == '2'%}

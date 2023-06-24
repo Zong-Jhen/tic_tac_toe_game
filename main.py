@@ -5,6 +5,8 @@ from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import Optional
+from game import Game, Player
+from utls import html_str_to_board
 
 app = FastAPI()
 app.mount("/static", StaticFiles(directory="static"), name="static")
@@ -28,11 +30,26 @@ def get(request: Request, board: Optional[str] = '000000000'):
     else:  # 其他情形都出錯
         raise ValueError("board invalid")
     
+    g = Game(Player(0), Player(1))
+    g.board = html_str_to_board(board)
+    is_end = g.is_end()
+    print(f'is_end:{is_end}') # 檢查結果
+    if is_end == 1:
+        end_text = 'Circle win!!'
+    elif is_end == 2:
+        end_text = 'Cross win!!'
+    elif is_end == 3:    
+        end_text = 'Draw!!'
+    else:
+        end_text = ''
+
     return templates.TemplateResponse(
         "tic_tac_toe.html",
         {
             "request": request,
             "board": board,
             "turn": turn,
+            "is_end": is_end,
+            "end_text": end_text,
         }
     )
