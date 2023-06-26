@@ -15,6 +15,7 @@ body{
     /* border: 5px solid white; */
     /* 界定3個row, 比例為1:3:2 */
     /* 可以在網站上右鍵inspect, 估計所需條件 */
+    /* 單位是vh, 所以井字符號會隨視窗大小改變 */
     grid-template-rows: 10vh 3fr 2fr;
     /* row 1 放說明, row 2 放井字, row 3放按鍵 */
 }
