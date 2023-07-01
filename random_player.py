@@ -1,3 +1,4 @@
+# 先用random當作例子
 import random
 
 class RandomPlayer:

@@ -61,18 +61,19 @@ def get_html(request: Request, board: Optional[str] = '000000000'):
 
 @app.get("/ai")
 def ai_move(request: Request, board: Optional[str] = '000000000'):
+    # decide move
     turn = get_turn_from_html_str(board)
     p = RandomPlayer(int(turn))
-    move = p.generate_move(html_str_to_board(board))
+    move = p.generate_move(html_str_to_board(board)) #字串轉成二維
     # print(f'move:{move}') # 連線檢查http://127.0.0.1:8000/ai?board=010000000
 
-    new_board = board[:move-1] + turn + board[move:]
-    print(f'new_board: {new_board}')
+    new_board = board[:move-1] + turn + board[move:] #把新的點放上去
+    # print(f'new_board: {new_board}')  # 連線檢查http://127.0.0.1:8000/ai?board=010000000
 
-    # decide move
+   
     # call / api
     # from redirect_response.py
-    return RedirectResponse(f'/?board={new_board}') 
+    return RedirectResponse(f'/?board={new_board}') # 顯示新的結果
     # / 是 main.py 裡面 app.get("/") 對應到的 function 
     # ? 是指帶入的 query parameter, 會把相關資訊帶入 function 內 board 參數
     # {}內是變數
