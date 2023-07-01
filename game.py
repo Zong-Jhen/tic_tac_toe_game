@@ -17,21 +17,22 @@ Design of board:
 # update steps to the answer of HW3
 # step 1 - add dunder init function to replace the last 11 lines
 # step 2 - decide which player is playing based on "turn" in class Player
-        # if self.player1 == 1:
-        #     self.current_player = player1...
+# if self.player1 == 1:
+#     self.current_player = player1...
 # step 3 - To avoid API showing mess results, change print bord everytime into an optional choice
-        # def play_move(self, print_board = False):
+# def play_move(self, print_board = False):
 # step 4 - For the convenience of connection to API, change the results from a statment into a number if any player wins
-        # Player 1 won -> return 1
-        # Player 2 won -> return 2
-        # No one won -> return 3
-        # unknown -> return 0
+# Player 1 won -> return 1
+# Player 2 won -> return 2
+# No one won -> return 3
+# unknown -> return 0
 
 
 class Player:
-    """ Player class
+    """Player class
     comment here !@#$%%^^&*(@$#$#$%@^%$@!#$$!$%%^&&*()*_)
     """
+
     def __init__(self, turn: int) -> None:
         self.turn = turn
 
@@ -65,14 +66,14 @@ class Game:
 
     def print_board(self):
         for row in self.board:
-            row_str = '|'
+            row_str = "|"
             for num in row:
                 if num == 0:
-                    row_str = row_str + ' |'
+                    row_str = row_str + " |"
                 elif num == 1:
-                    row_str = row_str + 'O|'
+                    row_str = row_str + "O|"
                 elif num == 2:
-                    row_str = row_str + 'X|'
+                    row_str = row_str + "X|"
             print(row_str)
 
     def change_player(self) -> int:
@@ -81,12 +82,12 @@ class Game:
         else:
             self.current_player = self.player1
 
-    def play_move(self, print_board = False):
+    def play_move(self, print_board=False):
         position_num = self.current_player.generate_move(self.board) - 1
         self.board[position_num // 3][position_num % 3] = self.current_player.turn
         if print_board:
             self.print_board()
-            print('--------------------------------------------------')
+            print("--------------------------------------------------")
         self.change_player()
 
     def check_consecutive(self, i, j):
@@ -127,4 +128,3 @@ class Game:
         if is_full:
             return 3
         return 0
-
