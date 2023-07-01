@@ -17,3 +17,7 @@ $ pip install -r requirements.txt
 ```
 $ uvicorn main:app --reload
 ```
+## Format code
+```
+$ make format
+```
